@@ -9,7 +9,7 @@ import JumpSq from "./components/JumpSq";
 import NotFound from "./components/NotFound";
 import YoungJump from "./components/YoungJump";
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <Header />
