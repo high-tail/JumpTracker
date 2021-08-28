@@ -4,8 +4,8 @@ import App from './App';
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-// Add bootstrap
-import 'bootstrap/dist/css/bootstrap.css';
+// Add MyStlye
+import './scss/style.scss';
 
 ReactDOM.render(
   <Router>

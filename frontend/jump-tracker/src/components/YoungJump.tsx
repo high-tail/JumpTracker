@@ -1,11 +1,33 @@
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import Serialization from "./Serialization";
 
 export default function YoungJump() {
   return (
-    <Container className="justify-content-center mt-3">
-      <h2 className="p-2">週刊ヤングジャンプ</h2>
-      <a className="btn btn-outline-secondary" href="http://youngjump.jp/">公式サイト</a>
-      <h3 className="p-2 bg-light">連載一覧</h3>
-    </Container>
+    <>
+      <div id="intro" className="intro-section pb-2 mb-5">
+        <Container>
+          <div className="row align-items-center text-white">
+            <div className="col-md-8 intros text-start">
+              <h1 className="display-2">
+                <span className="display-2--intro">週刊ヤングジャンプ</span>
+              </h1>
+              <Button
+                variant="primary"
+                className="btn-rounded rounded-pill"
+                href="/login"
+              >
+                公式サイトへ
+                <span>
+                  <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+                </span>
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </div>
+      <Serialization />
+    </>
   )
 }

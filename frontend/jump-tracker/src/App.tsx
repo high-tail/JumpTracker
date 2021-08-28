@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Jump from "./components/Jump";
 import JumpSq from "./components/JumpSq";
+import List from "./components/List";
 import NotFound from "./components/NotFound";
 import YoungJump from "./components/YoungJump";
 
@@ -16,6 +17,9 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/list">
+            <List />
           </Route>
           <Route path="/jump">
             <Jump />
