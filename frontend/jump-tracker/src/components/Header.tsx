@@ -1,13 +1,74 @@
-import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { NavLink, useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 
-export default function Header() {
+import { signOut } from "lib/api/auth";
+
+import { AuthContext } from "App";
+
+const Header: React.FC = () => {
+  const { loading, isSignedIn, setIsSignedIn } = useContext(AuthContext)
+  const histroy = useHistory()
+
+  const handleSignOut = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    try {
+      const res = await signOut()
+
+      if (res.data.success === true) {
+        // サインアウト時には各Cookieを削除
+        Cookies.remove("_access_token")
+        Cookies.remove("_client")
+        Cookies.remove("_uid")
+
+        setIsSignedIn(false)
+        histroy.push("/signin")
+
+        console.log("Succeeded in sign out")
+      } else {
+        console.log("Failed in sign out")
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const AuthButtons = () => {
+    // 認証完了後はサインアウト用のボタンを表示
+    // 未認証時は認証用のボタンを表示
+    if (!loading) {
+      if (isSignedIn) {
+        return (
+          <Button
+            color="inherit"
+            className="btn"
+            onClick={handleSignOut}
+          >
+            サインアウト
+          </Button>
+        )
+      } else {
+        return (
+          <Button
+            href="/login"
+            color="inherit"
+            className="btn-primary"
+          >
+            サインイン
+          </Button>
+        )
+      }
+    } else {
+      return <></>
+    }
+  }
+
   return (
     <>
       <Navbar bg="primary" variant="light" className="text-light menu">
         <Container className="d-flex justify-content-center">
           <Navbar.Brand href="/">ジャンプ・トラッカー</Navbar.Brand>
+          <AuthButtons />
         </Container>
       </Navbar>
       <Nav
@@ -50,3 +111,5 @@ export default function Header() {
     </>
   );
 }
+
+export default Header;
