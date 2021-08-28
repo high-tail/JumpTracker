@@ -1,0 +1,47 @@
+@use '../custom' as *;
+@use '../components/mixins' as *;
+
+
+.footer {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: $gray-300;
+}
+
+// STYLE THE COPYRIGHT  CONTENT 
+.footer-bottom {
+
+    &__copyright {
+        color: $gray-600;
+        font-weight: 400;
+        
+
+        a {
+            color: $gray-300;
+            text-decoration: none;
+
+            &:hover {
+                color: $primary;
+                text-decoration: underline;
+             
+            }
+        }
+    }
+}
+
+
+// STYLE THE BACK TO TOP BUTTON 
+.back-to-top {
+    position: fixed;
+    width: 3rem;
+    height: 3rem;
+    right: 1.875rem;
+    bottom: 1.875rem;
+    z-index: 9999;
+
+    i {
+        color: $white;
+        font-size: 1rem;
+        @include absoluteCenter;
+    }
+}
