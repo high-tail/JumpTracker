@@ -27,11 +27,11 @@ services:
       - db
   front:
     build: 
-      context: ./frontend/jump-tracker
+      context: ./frontend/
       dockerfile: Dockerfile
     volumes:
-      - ./frontend/jump-tracker:/usr/src/app
-    command: sh -c "yarn start"
+      - ./frontend:/usr/src/app
+    command: sh -c "cd jump-tracker && yarn start"
     ports:
       - "3000:3000"
 volumes:
