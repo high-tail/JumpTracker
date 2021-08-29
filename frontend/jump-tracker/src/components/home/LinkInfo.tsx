@@ -10,7 +10,6 @@ export default function LinkInfo() {
       <div className="row">
         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
           <div className="services__content">
-            <div className="icon d-block fas fa-paper-plane"></div>
             <h3 className="display-3--title mt-1">一覧</h3>
             <p className="lh-lg">
               一覧画面から，発売日が知りたい漫画・雑誌を探す．<br/>
@@ -39,7 +38,6 @@ export default function LinkInfo() {
         </div>
         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
           <div className="services__content">
-            <div className="icon d-block fas fa-code"></div>
             <h3 className="display-3--title mt-1">お気に入り</h3>
             <p className="lh-lg">
               お気に入り登録することで，発売日に通知を送ることができる．

@@ -3,6 +3,9 @@ import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
 import { signOut } from "lib/api/auth";
 
 import { AuthContext } from "App";
@@ -22,7 +25,7 @@ const Header: React.FC = () => {
         Cookies.remove("_uid")
 
         setIsSignedIn(false)
-        histroy.push("/signin")
+        histroy.push("/login")
 
         console.log("Succeeded in sign out")
       } else {
@@ -41,10 +44,11 @@ const Header: React.FC = () => {
         return (
           <Button
             color="inherit"
-            className="btn"
+            className="btn-primary"
             onClick={handleSignOut}
           >
-            サインアウト
+            ログアウト
+            <FontAwesomeIcon icon={faSignOutAlt}></FontAwesomeIcon>
           </Button>
         )
       } else {
@@ -54,7 +58,8 @@ const Header: React.FC = () => {
             color="inherit"
             className="btn-primary"
           >
-            サインイン
+            ログイン
+            <FontAwesomeIcon icon={faSignInAlt}></FontAwesomeIcon>
           </Button>
         )
       }
@@ -66,7 +71,7 @@ const Header: React.FC = () => {
   return (
     <>
       <Navbar bg="primary" variant="light" className="text-light menu">
-        <Container className="d-flex justify-content-center">
+        <Container className="d-flex">
           <Navbar.Brand href="/">ジャンプ・トラッカー</Navbar.Brand>
           <AuthButtons />
         </Container>

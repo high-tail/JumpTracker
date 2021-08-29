@@ -1,32 +1,34 @@
 import React from "react";
 import { Alert } from "react-bootstrap";
-
 interface AlertMessageProps {
-  open: boolean;
-  setOpen: Function;
-  severity: "error" | "success" | "info" | "warning";
-  message: string;
+  isOpen: boolean;
+  variant: "danger" | "success";
+  text: string;
+  error: string;
+  onClose: () => void;
 }
 
 // アラートメッセージ（何かアクションを行なった際の案内用に使い回す）
-const AlertMessage = ({
-  open,
-  setOpen,
-  severity,
-  message,
-}: AlertMessageProps) => {
-  const handleCloseAlertMessage = (
-    e?: React.SyntheticEvent,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") return;
-
-    setOpen(false);
-  };
-
+const AlertMessage: React.FC<AlertMessageProps> = ({
+  isOpen,
+  variant,
+  text,
+  error,
+  onClose,
+}) => {
   return (
     <>
-      <Alert onClose={handleCloseAlertMessage}>{message}</Alert>
+      <Alert
+        variant={variant}
+        onClose={onClose}
+        dismissible
+        show={isOpen}
+        transition
+        className="mt-3"
+      >
+        {text}
+        {error}
+      </Alert>
     </>
   );
 };

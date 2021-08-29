@@ -37,18 +37,13 @@ const App: React.FC = () => {
   const handleGetCurrentUser = async () => {
     try {
       const res = await getCurrentUser()
-      console.log(res)
-
       if (res?.status === 200) {
         setIsSignedIn(true)
         setCurrentUser(res?.data.currentUser)
-      } else {
-        console.log("No current user")
       }
     } catch (err) {
       console.log(err)
     }
-
     setLoading(false)
   }
 
@@ -59,37 +54,39 @@ const App: React.FC = () => {
   return (
     <>
       <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser}}>
-        <Header />
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/list">
-              <List />
-            </Route>
-            <Route path="/jump">
-              <Jump />
-            </Route>
-            <Route path="/jump-sq">
-              <JumpSq />
-            </Route>
-            <Route path="/young-jump">
-              <YoungJump />
-            </Route>
-            <Route path="/favorites">
-              <Favorites />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/signup">
-              <SignUp />
-            </Route>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-        <Footer />
+        <div className="wrapper">
+          <Header />
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/list">
+                <List />
+              </Route>
+              <Route path="/jump">
+                <Jump />
+              </Route>
+              <Route path="/jump-sq">
+                <JumpSq />
+              </Route>
+              <Route path="/young-jump">
+                <YoungJump />
+              </Route>
+              <Route path="/favorites">
+                <Favorites />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/signup">
+                <SignUp />
+              </Route>
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+          <Footer />
+        </div>
       </AuthContext.Provider>
     </>
   );

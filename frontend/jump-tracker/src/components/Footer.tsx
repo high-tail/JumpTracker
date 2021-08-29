@@ -1,14 +1,16 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 
 export default function Footer() {
   return (
-    <>
-      <footer className="footer">
-        <Container>
-          <div className="footer-bottom__copyrigth text-center">@ Copyright 2021 Takao</div>
-        </Container>
-      </footer>
-    </>
+    <footer className="footer">
+      <div className="footer-bottom">
+          <div className="row text-center">
+            <div>JumpTracker</div>
+            <div className="col-12">
+              <div className="footer-bottom__copyrigth">@ Copyright 2021 Takao</div>
+            </div>
+          </div>
+      </div>
+    </footer>
   );
 }
