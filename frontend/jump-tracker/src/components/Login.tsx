@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import { Form, Button, Container, Card } from "react-bootstrap";
 import Cookies from "js-cookie";
 
+import { Formik } from "formik";
+import * as Yup from "yup";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -16,41 +19,25 @@ const Login: React.FC = () => {
 
   const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
 
-  const [email, setEmail] = useState<string>("");
-  const [emailError, setEmailError] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [passwordError, setPasswordError] = useState<string>("");
   const [alertMessageOpen, setAlertMessageOpen] = useState<boolean>(false);
-  const [baseErrorMessage, setBaseErrorMessage] = useState<string>("");
+  const [baseErrorMessage, setbaseErrorMessage] = useState<string>("");
 
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    validateEmail(String(e.target.value));
+  const initialValues: SignInData = {
+    email: "",
+    password: "",
   };
 
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    validatePassword(String(e.target.value));
-  };
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("メールアドレスの形式が不正です")
+      .required("必須項目です"),
+    password: Yup.string().required("必須項目です"),
+  });
 
-  const validateEmail = (email: string) => {
-    if (email === "") {
-      setEmailError("必須項目です");
-    }
-  };
-
-  const validatePassword = (password: string) => {
-    if (password === "") {
-      setPasswordError("必須項目です");
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleSignIn = async (value: SignInData) => {
     const data: SignInData = {
-      email: email,
-      password: password,
+      email: value.email,
+      password: value.password,
     };
 
     try {
@@ -58,95 +45,121 @@ const Login: React.FC = () => {
       console.log(res);
 
       if (res.status === 200) {
-        // 成功した場合はCookieに各値を格納
-        Cookies.set("_access_token", res.headers["access-token"]);
-        Cookies.set("_client", res.headers["client"]);
-        Cookies.set("_uid", res.headers["uid"]);
+        if (res.data.status === 200) {
+          // 成功した場合はCookieに各値を格納
+          Cookies.set("_access_token", res.headers["access-token"]);
+          Cookies.set("_client", res.headers["client"]);
+          Cookies.set("_uid", res.headers["uid"]);
 
-        setIsSignedIn(true);
-        setCurrentUser(res.data.data);
-        history.push("/");
+          setIsSignedIn(true);
+          setCurrentUser(res.data.data);
+          history.push("/");
 
-        console.log("Signed in successfully!");
-      } else {
-        setAlertMessageOpen(true);
+          console.log("Signed in successfully!");
+        } else if (res.data.status === 401) {
+          setAlertMessageOpen(true);
+          setbaseErrorMessage("該当するユーザが存在しません");
+        } else {
+          setAlertMessageOpen(true);
+          setbaseErrorMessage(
+            "予期せぬエラーです。もういちどやり直してください"
+          );
+        }
       }
     } catch (err) {
       console.log(err);
+      setbaseErrorMessage("サーバに接続できませんでした");
       setAlertMessageOpen(true);
-
-      if (err.status === 401) {
-        setBaseErrorMessage("ユーザが存在しません");
-      }
     }
   };
 
   return (
-    <Container>
-      {alertMessageOpen && (
-        <AlertMessage // エラーが発生した場合はアラートを表示
-          isOpen={alertMessageOpen}
-          variant="danger"
-          text="ログインに失敗しました"
-          error={baseErrorMessage}
-          onClose={() => setAlertMessageOpen(false)}
-        />
+    <Formik
+      validationSchema={validationSchema}
+      initialValues={initialValues}
+      onSubmit={(values) => handleSignIn(values)}
+    >
+      {({
+        handleSubmit,
+        handleChange,
+        handleBlur,
+        values,
+        touched,
+        errors,
+      }) => (
+        <Container>
+          {alertMessageOpen && (
+            <AlertMessage
+              isOpen={alertMessageOpen}
+              variant="danger"
+              text="ログインに失敗しました"
+              error={baseErrorMessage}
+              onClose={() => setAlertMessageOpen(false)}
+            />
+          )}
+          <Form noValidate onSubmit={handleSubmit}>
+            <Card className="mt-2" border="primary">
+              <Card.Header as="h3" bsPrefix="card-header form-section">
+                <div className="form-2">
+                  <span className="form-2--intro text-white">ログイン</span>
+                </div>
+              </Card.Header>
+              <Card.Body>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label className="form-2--label">
+                    メールアドレス
+                  </Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    placeholder="example@example.com"
+                    value={values.email}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={!!(touched.email && errors.email)}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email}
+                  </Form.Control.Feedback>
+                  <Form.Text className="text-muted"></Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label className="form-2--label">パスワード</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={values.password}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={!!(touched.password && errors.password)}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="rounded-pill btn-rounded border-primary"
+                  >
+                    ログイン
+                    <span>
+                      <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+                    </span>
+                  </Button>
+                  <div>
+                    <p className="pt-3">
+                      <a href="/signup">まだ登録していない方はこちら</a>
+                    </p>
+                  </div>
+                </Form.Group>
+              </Card.Body>
+            </Card>
+          </Form>
+        </Container>
       )}
-      <Form noValidate onSubmit={handleSubmit}>
-        <Card className="mt-2" border="primary">
-          <Card.Header as="h3" bsPrefix="card-header form-section">
-            <div className="form-2">
-              <span className="form-2--intro text-white">ログイン</span>
-            </div>
-          </Card.Header>
-          <Card.Body>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className="form-2--label">メールアドレス</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="example@example.com"
-                value={email}
-                onChange={onChangeEmail}
-                isValid={emailError !== ""}
-              />
-              <Form.Control.Feedback type="invalid">
-                {emailError}
-              </Form.Control.Feedback>
-              <Form.Text className="text-muted"></Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label className="form-2--label">パスワード</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={onChangePassword}
-                isValid={passwordError !== ""}
-              />
-              <Form.Control.Feedback type="invalid">
-                {passwordError}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Button
-                variant="primary"
-                type="submit"
-                className="rounded-pill btn-rounded border-primary"
-              >
-                ログイン
-                <span>
-                  <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
-                </span>
-              </Button>
-              <div>
-                <p className="pt-3">
-                  まだ登録していない方は<a href="/signup">こちら</a>
-                </p>
-              </div>
-            </Form.Group>
-          </Card.Body>
-        </Card>
-      </Form>
-    </Container>
+    </Formik>
   );
 };
 

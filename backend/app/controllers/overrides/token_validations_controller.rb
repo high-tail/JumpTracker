@@ -1,6 +1,5 @@
 module Overrides
   class TokenValidationsController < DeviseTokenAuth::TokenValidationsController
-
     def validate_token
       # @resource will have been set by set_user_by_token concern
       if @resource
@@ -9,8 +8,8 @@ module Overrides
         }
       else
         render json: {
-          success: false,
-          errors: ["Invalid login credentials"]
+          success: true,
+          errors: ["TEST"]
         }, status: 401
       end
     end

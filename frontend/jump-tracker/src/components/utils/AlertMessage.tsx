@@ -27,7 +27,8 @@ const AlertMessage: React.FC<AlertMessageProps> = ({
         className="mt-3"
       >
         {text}
-        {error}
+        <br />
+        原因: {error}
       </Alert>
     </>
   );
