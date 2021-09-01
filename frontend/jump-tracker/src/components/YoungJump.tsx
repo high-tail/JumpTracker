@@ -27,7 +27,7 @@ export default function YoungJump() {
           </div>
         </Container>
       </div>
-      <Serialization />
+      <Serialization magazineId={Number(3)} />
     </>
-  )
+  );
 }

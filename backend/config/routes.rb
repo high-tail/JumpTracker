@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :comics, only: [:index, :show]
+      get 'magazines/index'
+      resources :favorite_comics, only: [:index]
+      resources :favorite_magazines, only: [:index]
+    end
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
