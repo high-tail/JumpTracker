@@ -27,7 +27,7 @@ export default function JumpSq() {
           </div>
         </Container>
       </div>
-      <Serialization />
+      <Serialization magazineId={Number(2)} />
     </>
   );
 }

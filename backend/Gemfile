@@ -48,3 +48,8 @@ end
 
 gem 'devise'
 gem 'devise_token_auth'
+
+gem 'faker'
+gem 'mechanize'
+gem 'nokogiri'
+gem 'pry-rails'
