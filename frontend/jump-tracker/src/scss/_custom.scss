@@ -1,11 +1,10 @@
 // MY THEME COLORS
-$pink:    #cc3366;
-$red:     #cc3300;
+$pink: #cc3366;
+$red: #cc3300;
 $red-light: #ff3366;
 
-
 // WHITE AND GRAY COLORD
-$white:    #fff;
+$white: #fff;
 $gray-100: #f8f9fa;
 $gray-200: #e9ecef;
 $gray-300: #dee2e6;
@@ -15,11 +14,11 @@ $gray-600: #6c757d;
 $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
-$black:    #000;
+$black: #000;
 
 $primary: $red;
 $danger: $pink;
 $secondary: $red-light;
 
 //import bootstrap5
-@import "../../node_modules/bootstrap/scss/bootstrap.scss"; 
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

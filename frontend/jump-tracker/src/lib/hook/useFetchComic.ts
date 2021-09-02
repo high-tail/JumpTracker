@@ -1,6 +1,6 @@
-import client from "../api/client";
 import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
+import client from "../api/client";
 
 export interface Comic {
   comics: Array<{

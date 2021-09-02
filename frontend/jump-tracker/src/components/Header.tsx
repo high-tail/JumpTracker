@@ -11,30 +11,26 @@ import { signOut } from "lib/api/auth";
 import { AuthContext } from "App";
 
 const Header: React.FC = () => {
-  const { loading, isSignedIn, setIsSignedIn } = useContext(AuthContext)
-  const histroy = useHistory()
+  const { loading, isSignedIn, setIsSignedIn } = useContext(AuthContext);
+  const histroy = useHistory();
 
   const handleSignOut = async (e: React.MouseEvent<HTMLButtonElement>) => {
     try {
-      const res = await signOut()
+      const res = await signOut();
 
       if (res.data.success === true) {
         // サインアウト時には各Cookieを削除
-        Cookies.remove("_access_token")
-        Cookies.remove("_client")
-        Cookies.remove("_uid")
+        Cookies.remove("_access_token");
+        Cookies.remove("_client");
+        Cookies.remove("_uid");
 
-        setIsSignedIn(false)
-        histroy.push("/login")
-
-        console.log("Succeeded in sign out")
-      } else {
-        console.log("Failed in sign out")
+        setIsSignedIn(false);
+        histroy.push("/login");
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   const AuthButtons = () => {
     // 認証完了後はサインアウト用のボタンを表示
@@ -48,25 +44,19 @@ const Header: React.FC = () => {
             onClick={handleSignOut}
           >
             ログアウト
-            <FontAwesomeIcon icon={faSignOutAlt}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faSignOutAlt} />
           </Button>
-        )
-      } else {
-        return (
-          <Button
-            href="/login"
-            color="inherit"
-            className="btn-primary"
-          >
-            ログイン
-            <FontAwesomeIcon icon={faSignInAlt}></FontAwesomeIcon>
-          </Button>
-        )
+        );
       }
-    } else {
-      return <></>
+      return (
+        <Button href="/login" color="inherit" className="btn-primary">
+          ログイン
+          <FontAwesomeIcon icon={faSignInAlt} />
+        </Button>
+      );
     }
-  }
+    return <></>;
+  };
 
   return (
     <>
@@ -83,38 +73,68 @@ const Header: React.FC = () => {
         className="bg-light justify-content-center menu"
       >
         <Nav.Item>
-          <NavLink to="/" activeClassName="nav-link active" className="nav-link" exact>
+          <NavLink
+            to="/"
+            activeClassName="nav-link active"
+            className="nav-link"
+            exact
+          >
             HOME
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink to="/list" activeClassName="nav-link active" className="nav-link" exact>
+          <NavLink
+            to="/list"
+            activeClassName="nav-link active"
+            className="nav-link"
+            exact
+          >
             一覧
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink to="/jump" activeClassName="nav-link active" className="nav-link" exact>
+          <NavLink
+            to="/jump"
+            activeClassName="nav-link active"
+            className="nav-link"
+            exact
+          >
             週刊少年ジャンプ
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink to="/jump-sq" activeClassName="nav-link active" className="nav-link" exact>
+          <NavLink
+            to="/jump-sq"
+            activeClassName="nav-link active"
+            className="nav-link"
+            exact
+          >
             ジャンプSQ
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink to="/young-jump" activeClassName="nav-link active" className="nav-link" exact>
+          <NavLink
+            to="/young-jump"
+            activeClassName="nav-link active"
+            className="nav-link"
+            exact
+          >
             週刊ヤングジャンプ
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink to="/favorites" activeClassName="nav-link active" className="nav-link" exact>
+          <NavLink
+            to="/favorites"
+            activeClassName="nav-link active"
+            className="nav-link"
+            exact
+          >
             お気に入り
           </NavLink>
         </Nav.Item>
       </Nav>
     </>
   );
-}
+};
 
 export default Header;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Alert } from "react-bootstrap";
+
 interface AlertMessageProps {
   isOpen: boolean;
   variant: "danger" | "success";
@@ -15,23 +16,21 @@ const AlertMessage: React.FC<AlertMessageProps> = ({
   text,
   error,
   onClose,
-}) => {
-  return (
-    <>
-      <Alert
-        variant={variant}
-        onClose={onClose}
-        dismissible
-        show={isOpen}
-        transition
-        className="mt-3"
-      >
-        {text}
-        <br />
-        原因: {error}
-      </Alert>
-    </>
-  );
-};
+}) => (
+  <>
+    <Alert
+      variant={variant}
+      onClose={onClose}
+      dismissible
+      show={isOpen}
+      transition
+      className="mt-3"
+    >
+      {text}
+      <br />
+      原因: {error}
+    </Alert>
+  </>
+);
 
 export default AlertMessage;

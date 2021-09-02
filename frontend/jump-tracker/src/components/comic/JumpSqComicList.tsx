@@ -1,3 +1,4 @@
+import React from "react";
 import { useFetchJumpSqComicList } from "lib/hook/useFetchComic";
 import { Table } from "react-bootstrap";
 
@@ -19,17 +20,15 @@ const JumpSqComicList = () => {
         </thead>
         <tbody>
           {data &&
-            data.comics.map((comic) => {
-              return (
-                <tr>
-                  <td>{comic.title}</td>
-                  <td>
-                    <a href={comic.url}>公式サイト</a>
-                  </td>
-                  <td>{comic.nextReleaseDate}</td>
-                </tr>
-              );
-            })}
+            data.comics.map((comic) => (
+              <tr>
+                <td>{comic.title}</td>
+                <td>
+                  <a href={comic.url}>公式サイト</a>
+                </td>
+                <td>{comic.nextReleaseDate}</td>
+              </tr>
+            ))}
         </tbody>
       </Table>
     </>

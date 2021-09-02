@@ -1,3 +1,4 @@
+import React from "react";
 import { useFetchMagazineList } from "lib/hook/useFetchMagazine";
 import { Table } from "react-bootstrap";
 
@@ -19,17 +20,15 @@ const MaagzineList = () => {
         </thead>
         <tbody>
           {data &&
-            data.magazines.map((magazine) => {
-              return (
-                <tr>
-                  <td>{magazine.title}</td>
-                  <td>
-                    <a href={magazine.url}>公式サイト</a>
-                  </td>
-                  <td>{magazine.nextReleaseDate}</td>
-                </tr>
-              );
-            })}
+            data.magazines.map((magazine) => (
+              <tr>
+                <td>{magazine.title}</td>
+                <td>
+                  <a href={magazine.url}>公式サイト</a>
+                </td>
+                <td>{magazine.nextReleaseDate}</td>
+              </tr>
+            ))}
         </tbody>
       </Table>
     </>

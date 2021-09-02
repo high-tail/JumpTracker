@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +21,7 @@ export default function YoungJump() {
               >
                 公式サイトへ
                 <span>
-                  <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+                  <FontAwesomeIcon icon={faArrowRight} />
                 </span>
               </Button>
             </div>
