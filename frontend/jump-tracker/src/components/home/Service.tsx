@@ -1,3 +1,4 @@
+import React from "react";
 import { Container } from "react-bootstrap";
 
 export default function Service() {
@@ -6,7 +7,7 @@ export default function Service() {
       <Container>
         <div className="row text-center">
           <h1 className="display-3 fw-bold">主な機能</h1>
-          <div className="heading-line mb-1"></div>
+          <div className="heading-line mb-1" />
         </div>
         <div className="row pt-2 pb-2 mt-0 mb-3">
           <div className="col-md-6 border-right">
@@ -19,7 +20,8 @@ export default function Service() {
           <div className="col-md-6">
             <div className="bg-white p-4 text-start">
               <p className="fw-light">
-                ログインしてお気に入り登録することで，発売を通知できます．<br/>
+                ログインしてお気に入り登録することで，発売を通知できます．
+                <br />
                 ログインしなくても発売日を確認することができます．
               </p>
             </div>

@@ -1,3 +1,4 @@
+import React from "react";
 import { useFetchComicList } from "lib/hook/useFetchComic";
 import ShowMagazine from "components/magazine/ShowMagazine";
 import { Table } from "react-bootstrap";
@@ -21,20 +22,18 @@ const ComicList = () => {
         </thead>
         <tbody>
           {data &&
-            data.comics.map((comic) => {
-              return (
-                <tr>
-                  <td>{comic.title}</td>
-                  <td>
-                    <a href={comic.url}>公式サイト</a>
-                  </td>
-                  <td>
-                    <ShowMagazine magazineId={Number(comic.magazineId)} />
-                  </td>
-                  <td>{comic.nextReleaseDate}</td>
-                </tr>
-              );
-            })}
+            data.comics.map((comic) => (
+              <tr>
+                <td>{comic.title}</td>
+                <td>
+                  <a href={comic.url}>公式サイト</a>
+                </td>
+                <td>
+                  <ShowMagazine magazineId={Number(comic.magazineId)} />
+                </td>
+                <td>{comic.nextReleaseDate}</td>
+              </tr>
+            ))}
         </tbody>
       </Table>
     </>

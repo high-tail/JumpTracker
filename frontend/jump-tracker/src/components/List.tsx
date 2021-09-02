@@ -21,7 +21,7 @@ export default function List() {
       <Container>
         <div className="row text-center">
           <h3 className="display-3 fw-bold">雑誌一覧</h3>
-          <div className="heading-line mb-1"></div>
+          <div className="heading-line mb-1" />
         </div>
         <div className="p-3" />
         <MaagzineList />
@@ -29,7 +29,7 @@ export default function List() {
         <div className="pt-5" />
         <div className="row text-center">
           <h3 className="display-3 fw-bold">連載マンガ一覧</h3>
-          <div className="heading-line mb-1"></div>
+          <div className="heading-line mb-1" />
         </div>
         <div className="p-3" />
         <ComicList />

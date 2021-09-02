@@ -28,6 +28,6 @@ export interface Magazine {
     id: number;
     title: string;
     url: string;
-    next_release_date: Date;
+    nextReleaseDate: Date;
   }>;
 }

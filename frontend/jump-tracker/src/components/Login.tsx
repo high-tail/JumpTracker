@@ -42,14 +42,13 @@ const Login: React.FC = () => {
 
     try {
       const res = await signIn(data);
-      console.log(res);
 
       if (res.status === 200) {
         if (res.data.status === 200) {
           // 成功した場合はCookieに各値を格納
           Cookies.set("_access_token", res.headers["access-token"]);
-          Cookies.set("_client", res.headers["client"]);
-          Cookies.set("_uid", res.headers["uid"]);
+          Cookies.set("_client", res.headers.client);
+          Cookies.set("_uid", res.headers.uid);
 
           setIsSignedIn(true);
           setCurrentUser(res.data.data);
@@ -67,7 +66,6 @@ const Login: React.FC = () => {
         }
       }
     } catch (err) {
-      console.log(err);
       setbaseErrorMessage("サーバに接続できませんでした");
       setAlertMessageOpen(true);
     }
@@ -121,7 +119,7 @@ const Login: React.FC = () => {
                   <Form.Control.Feedback type="invalid">
                     {errors.email}
                   </Form.Control.Feedback>
-                  <Form.Text className="text-muted"></Form.Text>
+                  <Form.Text className="text-muted" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label className="form-2--label">パスワード</Form.Label>
@@ -145,7 +143,7 @@ const Login: React.FC = () => {
                   >
                     ログイン
                     <span>
-                      <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+                      <FontAwesomeIcon icon={faArrowRight} />
                     </span>
                   </Button>
                   <div>

@@ -1,11 +1,11 @@
 @use '../custom' as *;
 @use '../components/mixins' as *;
 
-.wrapper{
-    min-height: 100vh;
-    position: relative;
-    padding-bottom: 120px;
-    box-sizing: border-box;
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 120px;
+  box-sizing: border-box;
 }
 
 .footer {

@@ -32,12 +32,12 @@ const Favorites: React.FC = () => {
           <Container>
             <div className="row text-center">
               <h3 className="display-3 fw-bold">お気に入り一覧</h3>
-              <div className="heading-line mb-1"></div>
+              <div className="heading-line mb-1" />
             </div>
           </Container>
         </>
       );
-    } else {
+    } 
       return (
         <>
           <Title />
@@ -52,7 +52,7 @@ const Favorites: React.FC = () => {
               >
                 ログイン
                 <span>
-                  <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+                  <FontAwesomeIcon icon={faArrowRight} />
                 </span>
               </Button>
             </div>
@@ -75,15 +75,15 @@ const Favorites: React.FC = () => {
           </Container>
         </>
       );
-    }
-  } else {
+    
+  } 
     return (
       <>
         <Title />
         LOADING...
       </>
     );
-  }
+  
 };
 
 export default Favorites;

@@ -47,27 +47,23 @@ const SignUp: React.FC = () => {
 
     try {
       const res = await signUp(data);
-      console.log(res);
 
       if (res.status === 200) {
         // アカウント作成と同時にサインインさせてしまう
         // TODO: メール確認などを挟む
         Cookies.set("_access_token", res.headers["access-token"]);
-        Cookies.set("_client", res.headers["client"]);
-        Cookies.set("_uid", res.headers["uid"]);
+        Cookies.set("_client", res.headers.client);
+        Cookies.set("_uid", res.headers.uid);
 
         setIsSignedIn(true);
         setCurrentUser(res.data.data);
 
         history.push("/");
-
-        console.log("Signed in successfully!");
       } else {
         setAlertMessageOpen(true);
         setbaseErrorMessage("失敗しました。もう一度やり直してください");
       }
     } catch (err) {
-      console.log(err);
       setbaseErrorMessage("サーバに接続できませんでした");
       setAlertMessageOpen(true);
     }
@@ -121,7 +117,7 @@ const SignUp: React.FC = () => {
                   <Form.Control.Feedback type="invalid">
                     {errors.email}
                   </Form.Control.Feedback>
-                  <Form.Text className="text-muted"></Form.Text>
+                  <Form.Text className="text-muted" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label className="form-2--label">パスワード</Form.Label>
@@ -166,7 +162,7 @@ const SignUp: React.FC = () => {
                   >
                     新規登録
                     <span>
-                      <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+                      <FontAwesomeIcon icon={faArrowRight} />
                     </span>
                   </Button>
                 </Form.Group>

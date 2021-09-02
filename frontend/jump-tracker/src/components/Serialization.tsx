@@ -1,3 +1,4 @@
+import React from "react";
 import { Container } from "react-bootstrap";
 import JumpComicList from "./comic/JumpComicList";
 import JumpSqComicList from "./comic/JumpSqComicList";
@@ -13,7 +14,7 @@ export default function Serialization(props: MagazineIdPropsType) {
       <Container>
         <div className="row text-center">
           <h3 className="display-3 fw-bold">連載一覧</h3>
-          <div className="heading-line mb-1"></div>
+          <div className="heading-line mb-1" />
         </div>
         <div className="p-3" />
         {(() => {

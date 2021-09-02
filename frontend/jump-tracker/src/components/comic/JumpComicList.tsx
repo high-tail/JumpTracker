@@ -1,3 +1,4 @@
+import React from "react";
 import { useFetchJumpComicList } from "lib/hook/useFetchComic";
 import { Table } from "react-bootstrap";
 
@@ -19,8 +20,7 @@ const JumpComicList = () => {
         </thead>
         <tbody>
           {data &&
-            data.comics.map((comic) => {
-              return (
+            data.comics.map((comic) => (
                 <tr>
                   <td>{comic.title}</td>
                   <td>
@@ -28,8 +28,7 @@ const JumpComicList = () => {
                   </td>
                   <td>{comic.nextReleaseDate}</td>
                 </tr>
-              );
-            })}
+              ))}
         </tbody>
       </Table>
     </>
