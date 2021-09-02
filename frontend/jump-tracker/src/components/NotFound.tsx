@@ -2,11 +2,21 @@ import { Container } from "react-bootstrap";
 
 export default function NotFound() {
   return (
-    <Container className="justify-content-center mt-5">
-      <h2 className="p-2 bg-light">存在しないページです</h2>
-      <div className="p-2 bg-white">
-        お気に入りの漫画が次週掲載されるか，単行本発売日がいつなのかを知ることができる．
+    <>
+      <div id="intro" className="intro-section pb-2 mb-5">
+        <Container>
+          <div className="row align-items-center text-white">
+            <div className="col-md-7 intros text-start">
+              <h1 className="display-2">
+                <span className="display-2--intro">存在しないページです</span>
+                <span className="display-2--description lh-base">
+                  URLをご確認いただくか、もう一度やり直してください
+                </span>
+              </h1>
+            </div>
+          </div>
+        </Container>
       </div>
-    </Container>
-  )
+    </>
+  );
 }
