@@ -21,13 +21,5 @@ export interface User {
   nickname?: string;
   image?: string;
   allowPasswordChange: boolean;
-}
-
-export interface Magazine {
-  magazines: Array<{
-    id: number;
-    title: string;
-    url: string;
-    nextReleaseDate: Date;
-  }>;
+  apiToken: string;
 }

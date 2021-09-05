@@ -1,11 +1,12 @@
 import React from "react";
-import { useFetchComicList } from "lib/hook/useFetchComic";
-import ShowMagazine from "components/magazine/ShowMagazine";
 import { Table } from "react-bootstrap";
-import Favorite from "components/utils/Favorite";
 
-const ComicList: React.FC = () => {
-  const { data, error, loading } = useFetchComicList();
+import { useFetchFavoriteComicList } from "lib/hook/useFetchComic";
+import Favorite from "components/utils/Favorite";
+import ShowMagazine from "components/magazine/ShowMagazine";
+
+const FavoriteComicList: React.FC = () => {
+  const { data, error, loading } = useFetchFavoriteComicList();
 
   if (loading) return <div>LOADING...</div>;
   if (error) return <div>{error.message}</div>;
@@ -45,4 +46,4 @@ const ComicList: React.FC = () => {
   );
 };
 
-export default ComicList;
+export default FavoriteComicList;

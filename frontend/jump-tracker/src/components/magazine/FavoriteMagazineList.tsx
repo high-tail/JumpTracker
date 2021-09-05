@@ -1,9 +1,10 @@
 import React from "react";
-import { useFetchMagazineList } from "lib/hook/useFetchMagazine";
 import { Table } from "react-bootstrap";
 
-const MaagzineList = () => {
-  const { data, error, loading } = useFetchMagazineList();
+import { useFetchFavoriteMagazineList } from "lib/hook/useFetchMagazine";
+
+const FavoriteMagazineList: React.FC = () => {
+  const { data, error, loading } = useFetchFavoriteMagazineList();
 
   if (loading) return <div>LOADING...</div>;
   if (error) return <div>{error.message}</div>;
@@ -11,13 +12,6 @@ const MaagzineList = () => {
   return (
     <>
       <Table size="sm">
-        <thead>
-          <tr>
-            <th>雑誌名</th>
-            <th>公式サイトリンク</th>
-            <th>次回発売日</th>
-          </tr>
-        </thead>
         <tbody>
           {data &&
             data.magazines.map((magazine) => (
@@ -35,4 +29,4 @@ const MaagzineList = () => {
   );
 };
 
-export default MaagzineList;
+export default FavoriteMagazineList;
