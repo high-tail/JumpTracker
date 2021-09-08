@@ -9,6 +9,7 @@ export interface Magazine {
     title: string;
     url: string;
     nextReleaseDate: string;
+    favoriteId: number;
   }>;
 }
 
@@ -32,7 +33,13 @@ export const useFetchMagazineList = (): IResponse => {
   const fetchRequest = () => {
     setRes((prevState) => ({ ...prevState, loading: true }));
     client
-      .get<Magazine>("magazines/index")
+      .get<Magazine>("magazines/", {
+        headers: {
+          "access-token": Cookies.get("_access_token"),
+          client: Cookies.get("_client"),
+          uid: Cookies.get("_uid"),
+        },
+      })
       .then((response) => {
         setRes({ data: response.data, error: null, loading: false });
       })

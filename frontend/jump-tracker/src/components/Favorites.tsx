@@ -33,10 +33,16 @@ const Favorites: React.FC = () => {
           <Title />
           <Container>
             <div className="row text-center">
-              <h3 className="display-3 fw-bold">お気に入り一覧</h3>
-              <div className="heading-line mb-1" />
-              <div className="p-3" />
+              <div className="row text-center">
+                <h3 className="display-3 fw-bold">雑誌</h3>
+                <div className="heading-line mb-1" />
+              </div>
               <FavoriteMagazineList />
+              <div className="p-5" />
+              <div className="row text-center">
+                <h3 className="display-3 fw-bold">マンガ</h3>
+                <div className="heading-line mb-1" />
+              </div>
               <FavoriteComicList />
             </div>
           </Container>

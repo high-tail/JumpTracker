@@ -1,6 +1,6 @@
 import React from "react";
 import { useFetchYoungJumpComicList } from "lib/hook/useFetchComic";
-import Favorite from "components/utils/Favorite";
+import FavoriteComic from "components/utils/FavoriteComic";
 import { Table } from "react-bootstrap";
 
 const YoungJumpComicList: React.FC = () => {
@@ -30,7 +30,10 @@ const YoungJumpComicList: React.FC = () => {
                 </td>
                 <td>{comic.nextReleaseDate}</td>
                 <td>
-                  <Favorite favoriteId={comic.favoriteId} comicId={comic.id} />
+                  <FavoriteComic
+                    favoriteId={comic.favoriteId}
+                    comicId={comic.id}
+                  />
                 </td>
               </tr>
             ))}

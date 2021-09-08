@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 
 import { useFetchFavoriteMagazineList } from "lib/hook/useFetchMagazine";
+import FavoriteMagazine from "components/utils/FavoriteMagazine";
 
 const FavoriteMagazineList: React.FC = () => {
   const { data, error, loading } = useFetchFavoriteMagazineList();
@@ -12,6 +13,14 @@ const FavoriteMagazineList: React.FC = () => {
   return (
     <>
       <Table size="sm">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>公式サイトリンク</th>
+            <th>次回発売日</th>
+            <th>お気に入り</th>
+          </tr>
+        </thead>
         <tbody>
           {data &&
             data.magazines.map((magazine) => (
@@ -21,6 +30,12 @@ const FavoriteMagazineList: React.FC = () => {
                   <a href={magazine.url}>公式サイト</a>
                 </td>
                 <td>{magazine.nextReleaseDate}</td>
+                <td>
+                  <FavoriteMagazine
+                    favoriteId={magazine.favoriteId}
+                    magazineId={magazine.id}
+                  />
+                </td>
               </tr>
             ))}
         </tbody>

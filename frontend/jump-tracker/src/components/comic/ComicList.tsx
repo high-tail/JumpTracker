@@ -2,7 +2,7 @@ import React from "react";
 import { useFetchComicList } from "lib/hook/useFetchComic";
 import ShowMagazine from "components/magazine/ShowMagazine";
 import { Table } from "react-bootstrap";
-import Favorite from "components/utils/Favorite";
+import FavoriteComic from "components/utils/FavoriteComic";
 
 const ComicList: React.FC = () => {
   const { data, error, loading } = useFetchComicList();
@@ -35,7 +35,10 @@ const ComicList: React.FC = () => {
                 </td>
                 <td>{comic.nextReleaseDate}</td>
                 <td>
-                  <Favorite favoriteId={comic.favoriteId} comicId={comic.id} />
+                  <FavoriteComic
+                    favoriteId={comic.favoriteId}
+                    comicId={comic.id}
+                  />
                 </td>
               </tr>
             ))}

@@ -5,32 +5,32 @@ import Cookies from "js-cookie";
 import { AxiosError } from "axios";
 import client from "../../lib/api/client";
 
-interface FavoriteComic {
+interface FavoritedMagazine {
   id: number | null;
-  comicId: number;
+  magazineId: number;
 }
 
 interface IResponse {
-  data: FavoriteComic | null;
+  data: FavoritedMagazine | null;
   error: AxiosError | null;
 }
 
-type FavoriteComicPropsType = {
-  comicId: number;
+type FavoriteMagazinePropsType = {
+  magazineId: number;
   favoriteId: number;
 };
 
-const Favorite: React.FC<FavoriteComicPropsType> = ({
-  comicId,
+const FavoriteMagazine: React.FC<FavoriteMagazinePropsType> = ({
+  magazineId,
   favoriteId,
 }) => {
   const [id, setId] = useState<number | null>(favoriteId);
   const handleFavorite = () => {
     if (id === null) {
       client
-        .post<FavoriteComic>(
-          `/users/favorite_comics`,
-          { comicId },
+        .post<FavoritedMagazine>(
+          `/users/favorite_magazines`,
+          { magazineId },
           {
             headers: {
               "access-token": Cookies.get("_access_token"),
@@ -47,7 +47,7 @@ const Favorite: React.FC<FavoriteComicPropsType> = ({
         });
     } else {
       client
-        .delete<FavoriteComic>(`/users/favorite_comics/${id}`, {
+        .delete<FavoritedMagazine>(`/users/favorite_magazines/${id}`, {
           headers: {
             "access-token": Cookies.get("_access_token"),
             client: Cookies.get("_client"),
@@ -70,4 +70,4 @@ const Favorite: React.FC<FavoriteComicPropsType> = ({
   );
 };
 
-export default Favorite;
+export default FavoriteMagazine;
