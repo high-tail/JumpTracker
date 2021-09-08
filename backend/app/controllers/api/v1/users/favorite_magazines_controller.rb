@@ -7,7 +7,17 @@ module Api
 
         def index
           favorite_magazines = current_api_v1_user.magazines
-          render json: { status: 200, magazines: favorite_magazines }
+          magazine_data = favorite_magazines.map do |magazine|
+            [
+              id: magazine.id,
+              title: magazine.title,
+              url: magazine.url,
+              next_release_date: magazine.next_release_date,
+              favorite_id: magazine.favorited_by(current_api_v1_user)&.id
+            ]
+          end
+
+          render json: { status: 200, magazines: magazine_data.flatten }
         end
 
         def create
@@ -16,7 +26,7 @@ module Api
         end
 
         def destroy
-          favorite = FavoriteMagazines.find(params[:id])
+          favorite = FavoriteMagazine.find(params[:id])
           favorite.destroy
           render json: favorite
         end
@@ -24,7 +34,7 @@ module Api
         private
 
         def favorite_params
-          params.require(:favorite_magazines).permit(:magazine_id)
+          params.require(:favorite_magazine).permit(:magazine_id)
         end
       end
     end
