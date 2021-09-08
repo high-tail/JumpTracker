@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :comics, only: [:index, :show]
-      get 'magazines/index'
-      resources :favorite_comics, only: [:index]
-      resources :favorite_magazines, only: [:index]
+      resources :magazines, only: [:index, :show]
     end
   end
 
@@ -13,8 +11,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
         registrations: 'api/v1/auth/registrations',
-        sessions: 'overrides/sessions'
+        sessions: 'overrides/sessions',
       }
+
+      namespace :users do
+        resources :favorite_comics, only: [:index, :create, :destroy]
+        resources :favorite_magazines, only: [:index, :create, :destroy]
+      end
 
       namespace :auth do
         resources :sessions, only: [:index]

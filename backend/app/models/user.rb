@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :favorite_comics
+  has_many :favorite_comics, dependent: :destroy
   has_many :comics, through: :favorite_comics
-  has_many :favorite_magazines
-  has_many :magazines, through: :magazines
+  has_many :favorite_magazines, dependent: :destroy
+  has_many :magazines, through: :favorite_magazines
 end

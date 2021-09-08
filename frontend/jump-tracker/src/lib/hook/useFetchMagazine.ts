@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import { AxiosError } from "axios";
 import client from "../api/client";
 
@@ -8,6 +9,7 @@ export interface Magazine {
     title: string;
     url: string;
     nextReleaseDate: string;
+    favoriteId: number;
   }>;
 }
 
@@ -18,7 +20,7 @@ export interface IResponse {
 }
 
 // 雑誌一覧を取得
-export const useFetchMagazineList = () => {
+export const useFetchMagazineList = (): IResponse => {
   const [res, setRes] = useState<IResponse>({
     data: null,
     error: null,
@@ -31,12 +33,49 @@ export const useFetchMagazineList = () => {
   const fetchRequest = () => {
     setRes((prevState) => ({ ...prevState, loading: true }));
     client
-      .get<Magazine>("magazines/index")
+      .get<Magazine>("magazines/", {
+        headers: {
+          "access-token": Cookies.get("_access_token"),
+          client: Cookies.get("_client"),
+          uid: Cookies.get("_uid"),
+        },
+      })
       .then((response) => {
         setRes({ data: response.data, error: null, loading: false });
       })
       .catch((error: AxiosError) => {
-        console.log(error);
+        setRes({ data: null, error, loading: false });
+      });
+  };
+
+  return res;
+};
+
+// お気に入り雑誌一覧を取得
+export const useFetchFavoriteMagazineList = (): IResponse => {
+  const [res, setRes] = useState<IResponse>({
+    data: null,
+    error: null,
+    loading: false,
+  });
+  useEffect(() => {
+    fetchRequest();
+  }, []);
+
+  const fetchRequest = () => {
+    setRes((prevState) => ({ ...prevState, loading: true }));
+    client
+      .get<Magazine>("/users/favorite_magazines", {
+        headers: {
+          "access-token": Cookies.get("_access_token"),
+          client: Cookies.get("_client"),
+          uid: Cookies.get("_uid"),
+        },
+      })
+      .then((response) => {
+        setRes({ data: response.data, error: null, loading: false });
+      })
+      .catch((error: AxiosError) => {
         setRes({ data: null, error, loading: false });
       });
   };
