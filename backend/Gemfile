@@ -53,3 +53,4 @@ gem 'faker'
 gem 'mechanize'
 gem 'nokogiri'
 gem 'pry-rails'
+gem 'whenever', require: false
