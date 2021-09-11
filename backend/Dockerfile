@@ -21,4 +21,4 @@ EXPOSE 3000
 
 RUN bundle exec whenever --update-crontab
 
-CMD ["cron", "-f"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
