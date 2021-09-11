@@ -1,7 +1,7 @@
 FROM ruby:3.0
 
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
-RUN apt-get install -y cron
+RUN apt-get install -y cron curl
 
 ENV APP_PATH /jump-traker-api
 
