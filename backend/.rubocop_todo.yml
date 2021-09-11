@@ -108,7 +108,7 @@ Layout/TrailingWhitespace:
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be a Fixnum or
   # a Float.
-  Max: 20
+  Max: 30
 
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.
@@ -118,7 +118,7 @@ Metrics/CyclomaticComplexity:
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 Metrics/MethodLength:
-  Max: 20
+  Max: 40
 
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.
@@ -129,6 +129,7 @@ Metrics/PerceivedComplexity:
 # Configuration parameters: AllowedChars.
 # AllowedChars: ©
 Style/AsciiComments:
+  Enabled: false
   Exclude:
     - "config/routes.rb"
 
