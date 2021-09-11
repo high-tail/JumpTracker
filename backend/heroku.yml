@@ -1,10 +1,12 @@
 build:
   docker:
     web: Dockerfile
+  config:
+    WORKDIR: app
 
 release:
   command:
     - bundle exec rake db:migrate
 
 run:
-  web: bundle exec puma -t 5:5 -e ${RAILS_ENV:-production} -p ${PORT:-3001} -C config/puma.rb config.ru
+  web: bundle exec puma -p ${PORT:-3001} -C config/puma.rb
