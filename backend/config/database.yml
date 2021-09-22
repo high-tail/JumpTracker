@@ -50,6 +50,4 @@ test:
 #
 production:
   <<: *default
-  database: jump-traker-api_production
-  username: jump-traker-api
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
