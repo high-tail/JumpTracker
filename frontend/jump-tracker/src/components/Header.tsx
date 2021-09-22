@@ -62,7 +62,9 @@ const Header: React.FC = () => {
     <>
       <Navbar bg="primary" variant="light" className="text-light menu">
         <Container className="d-flex">
-          <Navbar.Brand href="/">ジャンプ・トラッカー</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <span className="text-white">JumpTracker</span>
+          </Navbar.Brand>
           <AuthButtons />
         </Container>
       </Navbar>
