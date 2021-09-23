@@ -4,7 +4,11 @@ import { NavLink, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignInAlt,
+  faSignOutAlt,
+  faUserAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { signOut } from "lib/api/auth";
 
@@ -38,14 +42,22 @@ const Header: React.FC = () => {
     if (!loading) {
       if (isSignedIn) {
         return (
-          <Button
-            color="inherit"
-            className="btn-primary"
-            onClick={handleSignOut}
-          >
-            ログアウト
-            <FontAwesomeIcon icon={faSignOutAlt} />
-          </Button>
+          <div className="d-flex">
+            <Button
+              color="inherit"
+              className="btn-primary"
+              onClick={handleSignOut}
+              href=""
+            >
+              ログアウト
+              <FontAwesomeIcon icon={faSignOutAlt} />
+            </Button>
+            <div className="pl-2" />
+            <Button color="inherit" className="btn-white" href="/mypage">
+              マイページ
+              <FontAwesomeIcon icon={faUserAlt} />
+            </Button>
+          </div>
         );
       }
       return (

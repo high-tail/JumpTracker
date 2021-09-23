@@ -50,7 +50,6 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
@@ -65,5 +64,17 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
 
+  config.action_mailer.delivery_method = :smtp
+  # host = "jumptracker-api.herokuapp.com"
+  # config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.gmail.com',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['GMAIL_USERNAME'],
+    :password       => ENV['GMAIL_PASSWORD'],
+    :domain         => 'gmail.com',
+    :enable_starttls_auto => true
+  }
   config.hosts << 'jumptracker-api.herokuapp.com'
 end

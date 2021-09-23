@@ -7,7 +7,9 @@ const options = {
 
 const client = applyCaseMiddleware(
   axios.create({
-    baseURL: "http://localhost:3001/api/v1",
+    baseURL: "http://jumptracker-api.herokuapp.com/api/v1",
+    // 手元で動かす場合はこちら
+    // baseURL: "http://localhost:3001/api/v1",
   }),
   options
 );

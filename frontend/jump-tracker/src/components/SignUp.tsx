@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Button, Container, Card } from "react-bootstrap";
-import Cookies from "js-cookie";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -9,15 +8,12 @@ import * as Yup from "yup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-import { AuthContext } from "App";
 import AlertMessage from "components/utils/AlertMessage";
 import { signUp } from "lib/api/auth";
 import { SignUpData } from "interfaces/index";
 
 const SignUp: React.FC = () => {
   const history = useHistory();
-
-  const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
 
   const [alertMessageOpen, setAlertMessageOpen] = useState<boolean>(false);
   const [baseErrorMessage, setbaseErrorMessage] = useState<string>("");
@@ -49,16 +45,7 @@ const SignUp: React.FC = () => {
       const res = await signUp(data);
 
       if (res.status === 200) {
-        // アカウント作成と同時にサインインさせてしまう
-        // TODO: メール確認などを挟む
-        Cookies.set("_access_token", res.headers["access-token"]);
-        Cookies.set("_client", res.headers.client);
-        Cookies.set("_uid", res.headers.uid);
-
-        setIsSignedIn(true);
-        setCurrentUser(res.data.data);
-
-        history.push("/");
+        history.push("/confirm");
       } else {
         setAlertMessageOpen(true);
         setbaseErrorMessage("失敗しました。もう一度やり直してください");

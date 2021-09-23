@@ -31,3 +31,13 @@ export const getCurrentUser = (): Promise<AxiosResponse> =>
       uid: Cookies.get("_uid"),
     },
   });
+
+// ユーザ削除
+export const deleteUser = (): Promise<AxiosResponse> =>
+  client.delete("auth", {
+    headers: {
+      "access-token": Cookies.get("_access_token"),
+      client: Cookies.get("_client"),
+      uid: Cookies.get("_uid"),
+    },
+  });
