@@ -4,6 +4,7 @@ import SignUp from "components/SignUp";
 import { getCurrentUser } from "lib/api/auth";
 import { User } from "interfaces/index";
 import Confirm from "components/utils/Confirm";
+import MyPage from "components/utils/MyPage";
 import Favorites from "./components/Favorites";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -100,6 +101,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/confirm">
               <Confirm />
+            </Route>
+            <Route path="/mypage">
+              <MyPage />
             </Route>
             <Route path="*">
               <NotFound />

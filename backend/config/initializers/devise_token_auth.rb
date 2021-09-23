@@ -59,4 +59,5 @@ DeviseTokenAuth.setup do |config|
   config.send_confirmation_email = true
 
   config.default_confirm_success_url = "https://jumptracker-front.netlify.app/login"
+  # config.default_confirm_success_url = "http://localhost:3000/login"
 end

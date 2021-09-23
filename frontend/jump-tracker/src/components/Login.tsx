@@ -53,8 +53,6 @@ const Login: React.FC = () => {
           setIsSignedIn(true);
           setCurrentUser(res.data.data);
           history.push("/");
-
-          console.log("Signed in successfully!");
         } else if (res.data.status === 401) {
           setAlertMessageOpen(true);
           setbaseErrorMessage("該当するユーザが存在しません");
