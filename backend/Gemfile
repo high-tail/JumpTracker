@@ -52,6 +52,6 @@ gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'faker'
 gem 'mechanize'
-gem 'nokogiri'
+gem 'nokogiri', '>= 1.12.5'
 gem 'pry-rails'
 gem 'whenever', require: false
