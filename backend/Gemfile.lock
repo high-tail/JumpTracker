@@ -95,7 +95,6 @@ GEM
     ffi (1.15.3)
     globalid (0.5.2)
       activesupport (>= 5.0)
-    hashie (4.1.0)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
     i18n (1.8.10)
@@ -132,12 +131,8 @@ GEM
     net-http-persistent (4.0.1)
       connection_pool (~> 2.2)
     nio4r (2.5.8)
-    nokogiri (1.12.3-x86_64-linux)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
-    omniauth (2.0.4)
-      hashie (>= 3.4.6)
-      rack (>= 1.6.2, < 3)
-      rack-protection
     orm_adapter (0.5.0)
     parallel (1.20.1)
     parser (3.0.2.0)
@@ -154,8 +149,6 @@ GEM
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-protection (2.1.0)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.4.1)
@@ -257,8 +250,7 @@ DEPENDENCIES
   listen (~> 3.3)
   mechanize
   mysql2 (~> 0.5)
-  nokogiri
-  omniauth
+  nokogiri (>= 1.12.5)
   pry-rails
   puma (~> 5.0)
   rack-cors
