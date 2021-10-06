@@ -23,7 +23,7 @@ module Magazines
         next_release_date[5].to_i
       )
 
-      jump = Magazine.find_by(id: 3)
+      jump = Magazine.find_by(title: '週刊ヤングジャンプ')
       jump.next_release_date = res_date
       jump.save!
     end
