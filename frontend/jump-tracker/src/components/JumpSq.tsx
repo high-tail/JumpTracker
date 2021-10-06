@@ -17,7 +17,7 @@ export default function JumpSq() {
               <Button
                 variant="primary"
                 className="btn-rounded rounded-pill"
-                href="/login"
+                href="https://jumpsq.shueisha.co.jp/"
               >
                 公式サイトへ
                 <span>

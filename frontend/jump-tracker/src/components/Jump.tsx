@@ -17,7 +17,7 @@ export default function Jump() {
               <Button
                 variant="primary"
                 className="btn-rounded rounded-pill"
-                href="/login"
+                href="https://www.shonenjump.com/j/"
               >
                 公式サイトへ
                 <span>

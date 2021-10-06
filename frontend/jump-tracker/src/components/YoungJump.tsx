@@ -17,7 +17,7 @@ export default function YoungJump() {
               <Button
                 variant="primary"
                 className="btn-rounded rounded-pill"
-                href="/login"
+                href="https://youngjump.jp/magazine/"
               >
                 公式サイトへ
                 <span>
