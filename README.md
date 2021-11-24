@@ -5,6 +5,11 @@
 (メール・SNS通知機能も実装予定)
 
 ## 構成
+### 簡単な構成図
+![overview](demo_img/overview.png "Overview")
+
+### 簡単なER図
+![overview](demo_img/simple_er.png "ER")
 ### フロントエンド
 - React(TypeScript)
 
@@ -94,8 +99,9 @@ docker-compose down
 - モバイルデバイス用のviewの作成
 - 発売日が近くなったらメール・SNSで通知する
 - 全ユーザのお気に入り数を表示する
-- 雑誌の発売日が通常の場所に記録されていないことがある問題を解決する
+- ログインしていない時に，お気に入りを押すとツールチップを出す
 - マイページへの機能追加(パスワード・メールアドレス変更)
+- テストにおけるメール認証を突破する
 
 ## 参考文献等
 - https://github.com/MuriungiPatrick/Bootstrap-5-portfolio-template
