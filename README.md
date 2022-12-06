@@ -75,8 +75,8 @@ docker-compose up -d
 - 手元の場合
 http://localhost:3000
 
-- ページ
-https://jumptracker-front.netlify.app/
+- ページ(Herokuの無料版の廃止により、ページを削除しました)
+~~https://jumptracker-front.netlify.app/~~
 
 5. 止める
 
